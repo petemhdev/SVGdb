@@ -16,17 +16,19 @@
 			<div class="divider"></div>
 			
 				<div class="article">
-					<p class="message">This page uses JQuery AJAX with PHP MySQL to manipulate the SVG element</p>
+					<p id="message">This page uses JQuery AJAX with PHP MySQL to manipulate the SVG element</p>
 					
-					<svg width="640" height="480">
-				<rect id="shape1" width="200" height="200" style="fill:rgb(0,0,255)" x="1" y="1" />
-				<rect id="shape2" width="200" height="200" style="fill:rgb(0,0,255)" x="1" y="2" />
+					<svg width="640" height="480" id="drawing">
+				<rect id="shape1" width="2000" height="2000" style="fill:rgb(0,0,0)" x="1" y="1" />
+	
 					</svg>
 				<br />
 				<select id="modify">
 					  <option value="1">Shape 1</option>
 					  <option value="2">Shape 2</option>
 				</select>
+				
+					<input type="submit" value="New Shape" id="#newshape" name="new">
 				<br />
 			X <input name="x" type="range" min="1" max="640" value=5 step="1">
 			Y <input name="y" type="range" min="1" max="640" value=5 step="1">
@@ -37,6 +39,8 @@
 			Red <input id="r" name="red" type="range" min="0" max="254" value=5 step="1" label="red">
 			Green <input id="g" name="green" type="range" min="0" max="254" value=5 step="1" label="green">
 			Blue <input id="b" name="blue" type="range" min="0" max="254" value=5 step="1" label="blue">
+			<br />
+		
 			</div>
 			<div class="footer">
 				<p>Copyright Peter Hughes 2015</p>
