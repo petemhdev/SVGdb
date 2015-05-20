@@ -17,19 +17,20 @@
 				}
 				else{//Selection mode
 					//Get all data from shapes table
-					//echo '<svg width="640" height="480">';
+					
 					foreach($conn->query('SELECT * FROM tblshapes') as $row) {
 						//Format shape data into HTML
 						//<rect id="shape1" width="200" height="200" style="fill:rgb(0,0,255)" x="1" y="1" />
+						//Escape html special chars for security
 						echo "<rect id=";
-						echo '"shape' . $row['id'] . '"'
-						. ' width="' . $row['width'] . '"'
-						. ' height="' . $row['height'] . '"'
-						. ' x="' . $row['x'] . '"'
-						. ' y="' . $row['y'] . '"'
-						. ' style="fill:rgb(' . $row['red'] . ',' . $row['green'] . ',' . $row['blue'] . ')" />' . "\n";
+						echo '"shape' . htmlspecialchars($row['id'], ENT_NOQUOTES, 'utf-8') . '"'
+						. ' width="' . htmlspecialchars($row['width'], ENT_NOQUOTES, 'utf-8') . '"'
+						. ' height="' . htmlspecialchars($row['height'], ENT_NOQUOTES, 'utf-8') . '"'
+						. ' x="' . htmlspecialchars($row['x'], ENT_NOQUOTES, 'utf-8') . '"'
+						. ' y="' . htmlspecialchars($row['y'], ENT_NOQUOTES, 'utf-8') . '"'
+						. ' style="fill:rgb(' . htmlspecialchars($row['red'], ENT_NOQUOTES, 'utf-8') . ',' . htmlspecialchars($row['green'], ENT_NOQUOTES, 'utf-8') . ',' . htmlspecialchars($row['blue'], ENT_NOQUOTES, 'utf-8') . ')" />' . "\n";
 					}
-					//echo '</svg>';
+					
 				}
 			}
 			catch(PDOException $ex){ //If an error occurs output in readable form
