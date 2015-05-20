@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title> Vector Graphics Database Editor </title>
+		<link rel="stylesheet" href="style2.css"/>
+	</head>
+	<body>
+
+		<div class="container">
+			<div class="header">
+				<h1>SVG db</h1>
+
+			</div>
+
+			<div class="divider"></div>
+			
+				<div class="article">
+					<p class="message">This page uses JQuery AJAX with PHP MySQL to manipulate the SVG element</p>
+					
+					<svg width="640" height="480">
+				<rect id="shape1" width="200" height="200" style="fill:rgb(0,0,255)" x="1" y="1" />
+				<rect id="shape2" width="200" height="200" style="fill:rgb(0,0,255)" x="1" y="2" />
+					</svg>
+				<br />
+				<select id="modify">
+					  <option value="1">Shape 1</option>
+					  <option value="2">Shape 2</option>
+				</select>
+				<br />
+			X <input name="x" type="range" min="1" max="640" value=5 step="1">
+			Y <input name="y" type="range" min="1" max="640" value=5 step="1">
+				<br />
+			Width <input name="width" type="range" min="1" max="500" value=5 step="1" label="width">
+			Height <input name="height" type="range" min="1" max="500" value=5 step="1" label="height">
+			<br />
+			Red <input id="r" name="red" type="range" min="0" max="254" value=5 step="1" label="red">
+			Green <input id="g" name="green" type="range" min="0" max="254" value=5 step="1" label="green">
+			Blue <input id="b" name="blue" type="range" min="0" max="254" value=5 step="1" label="blue">
+			</div>
+			<div class="footer">
+				<p>Copyright Peter Hughes 2015</p>
+			</div>
+		</div>
+	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+	</body>
+</html>
