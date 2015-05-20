@@ -39,6 +39,7 @@ $( document ).ready(function() {
 			  });
   
   })
+  
   //When we change our shape selection
   $('select').change(function(){
 	  //Get the newly selected shape
@@ -70,9 +71,10 @@ $( document ).ready(function() {
 		  $( "#drawing" ).load( "shapes.php", function() {
 			//Display an update on the screen Google Docs style!
 			 $("#message").hide().text("Shapes loaded from database.").fadeIn("200");
+			//Trigger event to match sliders with shape
+			$("#modify").trigger("change");
+			 
 			});
-			
-	//Trigger the event which matches the range sliders to the current shape
-	 $('select').trigger("change");
+	
 	  
 	});
