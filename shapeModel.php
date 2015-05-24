@@ -23,8 +23,9 @@ class ShapeModel
 						$q = $this->db->prepare($sql);
 						//Execute query
 						$q->execute(array(':width'=>$width,
-										  ':height'=>$height,':x'=>$x,':y'=>$$y,
+										  ':height'=>$height,':x'=>$x,':y'=>$y,
 										  ':red'=>$red,':green'=>$green,':blue'=>$blue));
+
 		return true;
 	}
 	

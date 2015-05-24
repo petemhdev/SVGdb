@@ -16,7 +16,6 @@
 					elseif($_GET['mode']=="insert"){
 						//Insert the shape as specified by GET data
 						$shapeModel->insertShape($_GET['width'],$_GET['height'],$_GET['x'],$_GET['y'],$_GET['red'],$_GET['green'],$_GET['blue']);
-										
 					}
 				}
 				else{//Selection mode is default, this means we can view our drawing directly without the interface
