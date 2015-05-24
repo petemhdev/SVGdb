@@ -2,38 +2,30 @@
 
 			//Connect to the database
 			include('dbconfig.php');//Load connection string
+			include('shapeModel.php');
 			
+			//Make a new shape model, passing our connection string
+			$shapeModel=new ShapeModel($conn);
 			try{
 				//If we are in a specified mode (not select)
 				if(isset($_GET['mode'])){
 					if($_GET['mode']=="update"){
 						//Update the shape as specified by GET data
-						//Using a prepared statement
-						$sql = "UPDATE tblshapes SET width=:width,height=:height,x=:x,y=:y,red=:red,green=:green,blue=:blue WHERE id=:id";
-						$q = $conn->prepare($sql);
-						//Execute query
-						$q->execute(array(':width'=>$_GET['width'],
-										  ':height'=>$_GET['height'],':x'=>$_GET['x'],':y'=>$_GET['y'],
-										  ':red'=>$_GET['red'],':green'=>$_GET['green'],':blue'=>$_GET['blue'],':id'=>$_GET['id']));
+						$shapeModel->updateShape($_GET['id'],$_GET['width'],$_GET['height'],$_GET['x'],$_GET['y'],$_GET['red'],$_GET['green'],$_GET['blue']);
 					}
 					elseif($_GET['mode']=="insert"){
 						//Insert the shape as specified by GET data
-						//Using a prepared statement
-						$sql = "INSERT INTO tblshapes (width,height,x,y,red,green,blue) VALUES (:width,:height,:x,:y,:red,:green,:blue)";
-						$q = $conn->prepare($sql);
-						//Execute query
-						$q->execute(array(':width'=>$_GET['width'],
-										  ':height'=>$_GET['height'],':x'=>$_GET['x'],':y'=>$_GET['y'],
-										  ':red'=>$_GET['red'],':green'=>$_GET['green'],':blue'=>$_GET['blue']));
+						$shapeModel->insertShape($_GET['width'],$_GET['height'],$_GET['x'],$_GET['y'],$_GET['red'],$_GET['green'],$_GET['blue']);
 										
 					}
 				}
-				else{//Selection mode
+				else{//Selection mode is default, this means we can view our drawing directly without the interface
 					//Get all data from shapes table
 					echo '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="640" height="480" id="drawing">' . "\n";
-					foreach($conn->query('SELECT * FROM tblshapes') as $row) {
+					foreach($shapeModel->getShapes() as $row) {
 						//Format shape data into HTML
 
+						
 						//Escape html special chars for security
 						echo "<rect id=";
 						echo '"shape' . htmlspecialchars($row['id'], ENT_NOQUOTES, 'utf-8') . '"'
